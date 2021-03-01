@@ -4,9 +4,8 @@ import {Button} from '@material-ui/core'
 import {db} from '../firebase';
 import firebase from 'firebase';
 
-function ChatInput({channelName, channelId}) {
+function ChatInput({channelName, channelId, chatRef}) {
     const [input, setInput] = useState('');
-    console.log(channelId);
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -19,7 +18,11 @@ function ChatInput({channelName, channelId}) {
             message: input,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             user: 'John Doe',
-            userImage: "https://images.app.goo.gl/dRXf223hHXuBayVJ6"
+            userImage: "https://static.wikia.nocookie.net/gtawiki/images/7/70/CJ-GTASA.png/revision/latest?cb=20190612091918"
+        });
+
+        chatRef.current.scrollIntoView({
+            behavior: "smooth",
         });
 
         setInput('');
