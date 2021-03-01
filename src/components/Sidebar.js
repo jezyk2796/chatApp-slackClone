@@ -70,6 +70,7 @@ const SidebarContainer = styled.div`
   border-top: 1px solid #4d52f7;
   max-width: 260px;
   margin-top: 60px;
+  overflow-y: scroll;
   
   > hr {
   margin-top: 10px;
