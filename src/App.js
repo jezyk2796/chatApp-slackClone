@@ -14,9 +14,26 @@ import Chat from "./components/Chat";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from './firebase';
 import Login from './components/Login';
+import logo from './img/LOGO-dark.jpg';
+import Spinner from "react-spinkit"
 
 function App() {
   const [user, loading] = useAuthState(auth);
+
+  if (loading) {
+      return (
+          <AppLoading>
+              <AppLoadingContents>
+                  <img src={logo} alt=""/>
+                  <Spinner
+                      name="ball-triangle-path"
+                      color="#3135a3"
+                      fadeIn="none"
+                  />
+              </AppLoadingContents>
+          </AppLoading>
+      )
+  }
 
   return (
     <div className="app">
@@ -42,6 +59,31 @@ function App() {
 }
 
 export default App;
+
+const AppLoading = styled.div`
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
+`;
+
+const AppLoadingContents = styled.div`
+  text-align: center;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+`;
+
 
 const AppBody = styled.div`
   display: flex;
